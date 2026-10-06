@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="id" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Interaktif Pembelajaran SPLDV 4 Metode Kelas IX</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        canvas { touch-action: none; }
+        @keyframes pulse-slow {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .animate-pulse-slow {
+            animation: pulse-slow 3s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="h-full bg-slate-50 text-slate-800 flex flex-col relative">
+
+    <header class="bg-indigo-600 text-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col lg:flex-row justify-between items-center gap-4">
+            <div class="flex items-center space-x-3">
+                <div class="bg-white text-indigo-600 p-2.5 rounded-xl font-bold text-xl shadow">📐</div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-tight">SPLDV 4 Metode Interaktif</h1>
+                    <p class="text-xs text-indigo-200">Berdasarkan Buku Matematika Kurikulum Merdeka Kelas IX</p>
+                </div>
+            </div>
+            <nav class="flex flex-wrap gap-1.5 justify-center">
+                <button type="button" onclick="switchTab('materi')" class="nav-btn px-3 py-1.5 text-xs sm:text-sm font-medium rounded-lg bg-indigo-900 text-white transition hover:bg-indigo-500 shadow-sm" data-target="materi">Materi</button>
+                <button type="button" onclick="switchTab('grafik')" class="nav-btn px-3 py-1.5 text-xs sm:text-sm font-medium rounded-lg bg-indigo-700 text-white transition hover:bg-indigo-500 shadow-sm" data-target="grafik">1. Grafik</button>
+                <button type="button" onclick="switchTab('substitusi')" class="nav-btn px-3 py-1.5 text-xs sm:text-sm font-medium rounded-lg bg-indigo-700 text-white transition hover:bg-indigo-500 shadow-sm" data-target="substitusi">2. Substitusi</button>
+                <button type="button" onclick="switchTab('eliminasi')" class="nav-btn px-3 py-1.5 text-xs sm:text-sm font-medium rounded-lg bg-indigo-700 text-white transition hover:bg-indigo-500 shadow-sm" data-target="eliminasi">3. Eliminasi</button>
+                <button type="button" onclick="switchTab('campuran')" class="nav-btn px-3 py-1.5 text-xs sm:text-sm font-medium rounded-lg bg-indigo-700 text-white transition hover:bg-indigo-500 shadow-sm" data-target="campuran">4. Campuran</button>
+                <button type="button" onclick="switchTab('latihan')" class="nav-btn px-3 py-1.5 text-xs sm:text-sm font-medium rounded-lg bg-indigo-700 text-white transition hover:bg-indigo-500 shadow-sm" data-target="latihan">Latihan</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto p-4 sm:p-6 overflow-y-auto pb-24">
+
+        <!-- TAB 1: MATERI -->
+        <section id="materi" class="tab-content active space-y-6">
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+                <span class="text-xs font-semibold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full">Bab I • Kurikulum Merdeka</span>
+                <h2 class="text-2xl font-bold text-slate-900 mt-3">Empat Cara Menyelesaikan SPLDV</h2>
+                <p class="text-slate-600 mt-2 leading-relaxed">
+                    Sistem Persamaan Linear Dua Variabel (SPLDV) dapat diselesaikan melalui empat metode utama. Pilih menu di atas atau jelajahi ringkasan metode di bawah ini untuk praktik langsung!
+                </p>
+                <div class="my-4 p-4 bg-indigo-50/60 rounded-xl border border-indigo-100 flex flex-col items-center justify-center text-base font-mono font-semibold text-indigo-900 shadow-inner space-y-1">
+                    <div>ax + by = c</div>
+                    <div>dx + ey = f</div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-white rounded-xl p-5 shadow-sm border border-slate-200 flex flex-col justify-between">
+                    <div>
+                        <div class="w-8 h-8 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center font-bold mb-3 text-sm">1</div>
+                        <h3 class="font-bold text-slate-900 text-base">Metode Grafik</h3>
+                        <p class="text-slate-600 text-xs mt-2 leading-relaxed">
+                            Menggambar kedua garis pada bidang koordinat. Titik potong garis adalah himpunan penyelesaiannya.
+                        </p>
+                    </div>
+                    <button type="button" onclick="switchTab('grafik')" class="mt-4 w-full py-2 bg-blue-50 text-blue-600 rounded-lg font-semibold text-xs hover:bg-blue-100 transition">Buka Grafik &rarr;</button>
+                </div>
+
+                <div class="bg-white rounded-xl p-5 shadow-sm border border-slate-200 flex flex-col justify-between">
+                    <div>
+                        <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold mb-3 text-sm">2</div>
+                        <h3 class="font-bold text-slate-900 text-base">Metode Substitusi</h3>
+                        <p class="text-slate-600 text-xs mt-2 leading-relaxed">
+                            Menyatakan satu variabel dalam bentuk variabel lain, lalu memasukkannya ke persamaan kedua.
+                        </p>
+                    </div>
+                    <button type="button" onclick="switchTab('substitusi')" class="mt-4 w-full py-2 bg-emerald-50 text-emerald-600 rounded-lg font-semibold text-xs hover:bg-emerald-100 transition">Buka Substitusi &rarr;</button>
+                </div>
+
+                <div class="bg-white rounded-xl p-5 shadow-sm border border-slate-200 flex flex-col justify-between">
+                    <div>
+                        <div class="w-8 h-8 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center font-bold mb-3 text-sm">3</div>
+                        <h3 class="font-bold text-slate-900 text-base">Metode Eliminasi</h3>
+                        <p class="text-slate-600 text-xs mt-2 leading-relaxed">
+                            Menghilangkan salah satu variabel dengan menyamakan koefisiennya untuk mencari nilai variabel lainnya.
+                        </p>
+                    </div>
+                    <button type="button" onclick="switchTab('eliminasi')" class="mt-4 w-full py-2 bg-amber-50 text-amber-700 rounded-lg font-semibold text-xs hover:bg-amber-100 transition">Buka Eliminasi &rarr;</button>
+                </div>
+
+                <div class="bg-white rounded-xl p-5 shadow-sm border border-slate-200 flex flex-col justify-between">
+                    <div>
+                        <div class="w-8 h-8 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center font-bold mb-3 text-sm">4</div>
+                        <h3 class="font-bold text-slate-900 text-base">Metode Campuran</h3>
+                        <p class="text-slate-600 text-xs mt-2 leading-relaxed">
+                            Menggabungkan eliminasi untuk mencari variabel pertama, lalu substitusi untuk variabel kedua.
+                        </p>
+                    </div>
+                    <button type="button" onclick="switchTab('campuran')" class="mt-4 w-full py-2 bg-purple-50 text-purple-600 rounded-lg font-semibold text-xs hover:bg-purple-100 transition">Buka Campuran &rarr;</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: GRAFIK -->
+        <section id="grafik" class="tab-content space-y-6">
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+                <div class="mb-4">
+                    <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 bg-blue-50 px-3 py-1 rounded-full">Metode 1</span>
+                    <h2 class="text-xl font-bold text-slate-900 mt-2">Simulasi Metode Grafik</h2>
+                    <p class="text-xs text-slate-500">Ketik koefisien persamaan ax + by = c di bawah untuk melihat titik potong grafik secara otomatis.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="lg:col-span-2 space-y-4">
+                        <div class="bg-slate-900 rounded-xl overflow-hidden shadow-inner flex items-center justify-center p-2">
+                            <canvas id="canvasGrafik" width="500" height="400" class="w-full h-auto bg-slate-950 rounded-lg"></canvas>
+                        </div>
+                        
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
+                            <h3 class="font-bold text-slate-900 text-sm">Masukkan Persamaan (Bentuk: ax + by = c)</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="space-y-1">
+                                    <label class="text-xs font-semibold text-slate-700 block">Garis 1 (a1*x + b1*y = c1)</label>
+                                    <div class="flex items-center space-x-1 font-mono text-sm">
+                                        <input type="number" id="a1" value="1" class="w-14 p-1.5 text-center bg-white border border-slate-300 rounded-lg" oninput="drawGraph()">
+                                        <span>x +</span>
+                                        <input type="number" id="b1" value="1" class="w-14 p-1.5 text-center bg-white border border-slate-300 rounded-lg" oninput="drawGraph()">
+                                        <span>y =</span>
+                                        <input type="number" id="c1" value="6" class="w-16 p-1.5 text-center bg-white border border-slate-300 rounded-lg" oninput="drawGraph()">
+                                    </div>
+                                </div>
+                                <div class="space-y-1">
+                                    <label class="text-xs font-semibold text-slate-700 block">Garis 2 (a2*x + b2*y = c2)</label>
+                                    <div class="flex items-center space-x-1 font-mono text-sm">
+                                        <input type="number" id="a2" value="2" class="w-14 p-1.5 text-center bg-white border border-slate-300 rounded-lg" oninput="drawGraph()">
+                                        <span>x -</span>
+                                        <input type="number" id="b2" value="1" class="w-14 p-1.5 text-center bg-white border border-slate-300 rounded-lg" oninput="drawGraph()">
+                                        <span>y =</span>
+                                        <input type="number" id="c2" value="3" class="w-16 p-1.5 text-center bg-white border border-slate-300 rounded-lg" oninput="drawGraph()">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 flex flex-col justify-between space-y-4">
+                        <div>
+                            <h3 class="font-bold text-slate-900 text-sm">Informasi Grafik</h3>
+                            <div id="infoPersamaan" class="text-xs font-mono text-slate-600 mt-2 space-y-1">
+                                Garis 1: 1x + 1y = 6<br>
+                                Garis 2: 2x - 1y = 3
+                            </div>
+                        </div>
+                        <div class="p-4 bg-emerald-50 rounded-xl border border-emerald-100">
+                            <div class="text-xs text-emerald-700 font-semibold uppercase tracking-wider">Titik Penyelesaian (x, y)</div>
+                            <div id="titikPenyelesaian" class="text-xl font-bold text-emerald-900 mt-1">(3, 3)</div>
+                            <p id="infoStatusPenyelesaian" class="text-xs text-emerald-600 mt-1">Kedua garis berpotongan tepat di satu titik.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: SUBSTITUSI -->
+        <section id="substitusi" class="tab-content space-y-6">
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+                <div class="mb-4">
+                    <span class="text-xs font-semibold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">Metode 2</span>
+                    <h2 class="text-xl font-bold text-slate-900 mt-2">Kalkulator & Langkah Metode Substitusi</h2>
+                    <p class="text-xs text-slate-500">Masukkan sistem persamaan untuk melihat langkah demi langkah penyelesaian dengan substitusi.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 space-y-4">
+                        <h3 class="font-bold text-slate-900 text-sm">Atur Persamaan (ax + by = c)</h3>
+                        <div class="space-y-3 font-mono text-sm">
+                            <div class="flex items-center space-x-1">
+                                <span class="text-xs font-sans text-slate-600 w-16">Pers 1:</span>
+                                <input type="number" id="sub_a1" value="1" class="w-12 p-1 text-center bg-white border border-slate-300 rounded" oninput="hitungSubstitusi()">
+                                <span>x +</span>
+                                <input type="number" id="sub_b1" value="1" class="w-12 p-1 text-center bg-white border border-slate-300 rounded" oninput="hitungSubstitusi()">
+                                <span>y =</span>
+                                <input type="number" id="sub_c1" value="5" class="w-14 p-1 text-center bg-white border border-slate-300 rounded" oninput="hitungSubstitusi()">
+                            </div>
+                            <div class="flex items-center space-x-1">
+                                <span class="text-xs font-sans text-slate-600 w-16">Pers 2:</span>
+                                <input type="number" id="sub_a2" value="2" class="w-12 p-1 text-center bg-white border border-slate-300 rounded" oninput="hitungSubstitusi()">
+                                <span>x +</span>
+                                <input type="number" id="sub_b2" value="3" class="w-12 p-1 text-center bg-white border border-slate-300 rounded" oninput="hitungSubstitusi()">
+                                <span>y =</span>
+                                <input type="number" id="sub_c2" value="12" class="w-14 p-1 text-center bg-white border border-slate-300 rounded" oninput="hitungSubstitusi()">
+                            </div>
+                        </div>
+                        <button type="button" onclick="hitungSubstitusi()" class="w-full py-2 bg-emerald-600 text-white rounded-xl text-sm font-semibold hover:bg-emerald-700 transition">Hitung Langkah Substitusi</button>
+                    </div>
+
+                    <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 space-y-3">
+                        <h3 class="font-bold text-slate-900 text-sm">Langkah Penyelesaian</h3>
+                        <div id="substitusiLangkah" class="text-xs font-mono text-slate-700 space-y-2 bg-white p-4 rounded-lg border border-slate-200 leading-relaxed min-h-[160px]">
+                            <!-- Result injected via JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: ELIMINASI -->
+        <section id="eliminasi" class="tab-content space-y-6">
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+                <div class="mb-4">
+                    <span class="text-xs font-semibold uppercase tracking-wider text-amber-600 bg-amber-50 px-3 py-1 rounded-full">Metode 3</span>
+                    <h2 class="text-xl font-bold text-slate-900 mt-2">Kalkulator & Langkah Metode Eliminasi</h2>
+                    <p class="text-xs text-slate-500">Eliminasi salah satu variabel untuk mendapatkan nilai variabel lainnya.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 space-y-4">
+                        <h3 class="font-bold text-slate-900 text-sm">Atur Persamaan (ax + by = c)</h3>
+                        <div class="space-y-3 font-mono text-sm">
+                            <div class="flex items-center space-x-1">
+                                <span class="text-xs font-sans text-slate-600 w-16">Pers 1:</span>
+                                <input type="number" id="elim_a1" value="2" class="w-12 p-1 text-center bg-white border border-slate-300 rounded" oninput="hitungEliminasi()">
+                                <span>x +</span>
+                                <input type="number" id="elim_b1" value="1" class="w-12 p-1 text-center bg-white border border-slate-300 rounded" oninput="hitungEliminasi()">
+                                <span>y =</span>
+                                <input type="number" id="elim_c1" value="7" class="w-14 p-1 text-center bg-white border border-slate-300 rounded" oninput="hitungEliminasi()">
+                            </div>
+                            <div class="flex items-center space-x-1">
+                                <span class="text-xs font-sans text-slate-600 w-16">Pers 2:</span>
+                                <input type="number" id="elim_a2" value="1" class="w-12 p-1 text-center bg-white border border-slate-300 rounded" oninput="hitungEliminasi()">
+                                <span>x +</span>
+                                <input type="number" id="elim_b2" value="3" class="w-12 p-1 text-center bg-white border border-slate-300 rounded" oninput="hitungEliminasi()">
+                                <span>y =</span>
+                                <input type="number" id="elim_c2" value="11" class="w-14 p-1 text-center bg-white border border-slate-300 rounded" oninput="hitungEliminasi()">
+                            </div>
+                        </div>
+                        <button type="button" onclick="hitungEliminasi()" class="w-full py-2 bg-amber-600 text-white rounded-xl text-sm font-semibold hover:bg-amber-700 transition">Hitung Langkah Eliminasi</button>
+                    </div>
+
+                    <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 space-y-3">
+                        <h3 class="font-bold text-slate-900 text-sm">Langkah Penyelesaian</h3>
+                        <div id="eliminasiLangkah" class="text-xs font-mono text-slate-700 space-y-2 bg-white p-4 rounded-lg border border-slate-200 leading-relaxed min-h-[160px]">
+                            <!-- Result injected via JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 5: CAMPURAN -->
+        <section id="campuran" class="tab-content space-y-6">
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+                <div class="mb-4">
+                    <span class="text-xs font-semibold uppercase tracking-wider text-purple-600 bg-purple-50 px-3 py-1 rounded-full">Metode 4</span>
+                    <h2 class="text-xl font-bold text-slate-900 mt-2">Kalkulator & Langkah Metode Campuran</h2>
+                    <p class="text-xs text-slate-500">Menggabungkan Eliminasi (untuk mencari x) lalu Substitusi (untuk mencari y).</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 space-y-4">
+                        <h3 class="font-bold text-slate-900 text-sm">Atur Persamaan (ax + by = c)</h3>
+                        <div class="space-y-3 font-mono text-sm">
+                            <div class="flex items-center space-x-1">
+                                <span class="text-xs font-sans text-slate-600 w-16">Pers 1:</span>
+                                <input type="number" id="mix_a1" value="3" class="w-12 p-1 text-center bg-white border border-slate-300 rounded" oninput="hitungCampuran()">
+                                <span>x +</span>
+                                <input type="number" id="mix_b1" value="2" class="w-12 p-1 text-center bg-white border border-slate-300 rounded" oninput="hitungCampuran()">
+                                <span>y =</span>
+                                <input type="number" id="mix_c1" value="12" class="w-14 p-1 text-center bg-white border border-slate-300 rounded" oninput="hitungCampuran()">
+                            </div>
+                            <div class="flex items-center space-x-1">
+                                <span class="text-xs font-sans text-slate-600 w-16">Pers 2:</span>
+                                <input type="number" id="mix_a2_val" value="1" class="w-12 p-1 text-center bg-white border border-slate-300 rounded" oninput="hitungCampuran()">
+                                <span>x +</span>
+                                <input type="number" id="mix_b2" value="1" class="w-12 p-1 text-center bg-white border border-slate-300 rounded" oninput="hitungCampuran()">
+                                <span>y =</span>
+                                <input type="number" id="mix_c2" value="5" class="w-14 p-1 text-center bg-white border border-slate-300 rounded" oninput="hitungCampuran()">
+                            </div>
+                        </div>
+                        <button type="button" onclick="hitungCampuran()" class="w-full py-2 bg-purple-600 text-white rounded-xl text-sm font-semibold hover:bg-purple-700 transition">Hitung Langkah Campuran</button>
+                    </div>
+
+                    <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 space-y-3">
+                        <h3 class="font-bold text-slate-900 text-sm">Langkah Penyelesaian</h3>
+                        <div id="campuranLangkah" class="text-xs font-mono text-slate-700 space-y-2 bg-white p-4 rounded-lg border border-slate-200 leading-relaxed min-h-[160px]">
+                            <!-- Result injected via JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 6: LATIHAN -->
+        <section id="latihan" class="tab-content space-y-6">
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+                <div class="flex items-center space-x-3 mb-4">
+                    <span class="p-2 bg-indigo-100 text-indigo-700 rounded-xl text-lg">📝</span>
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900">Latihan Uji Pemahaman & Evaluasi</h2>
+                        <p class="text-xs text-slate-500">Uji kemampuan Anda dalam materi SPLDV Kelas IX</p>
+                    </div>
+                </div>
+
+                <div id="quizContainer" class="space-y-6 mt-6">
+                    <div class="p-5 bg-slate-50 rounded-xl border border-slate-200 space-y-3">
+                        <span class="text-xs font-semibold px-2.5 py-1 bg-indigo-100 text-indigo-700 rounded-md">Soal 1</span>
+                        <p class="text-sm font-semibold text-slate-900">Manakah di antara persamaan berikut yang merupakan Persamaan Linear Dua Variabel?</p>
+                        <div class="space-y-2 text-sm">
+                            <label class="flex items-center space-x-3 p-2.5 bg-white rounded-lg border border-slate-200 cursor-pointer hover:border-indigo-300 transition">
+                                <input type="radio" name="q1" value="a" class="accent-indigo-600">
+                                <span>3p - 6 = 7</span>
+                            </label>
+                            <label class="flex items-center space-x-3 p-2.5 bg-white rounded-lg border border-slate-200 cursor-pointer hover:border-indigo-300 transition">
+                                <input type="radio" name="q1" value="b" class="accent-indigo-600">
+                                <span>3a = 5 - b</span>
+                            </label>
+                            <label class="flex items-center space-x-3 p-2.5 bg-white rounded-lg border border-slate-200 cursor-pointer hover:border-indigo-300 transition">
+                                <input type="radio" name="q1" value="c" class="accent-indigo-600">
+                                <span>2p^2 - 7q = -3</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="p-5 bg-slate-50 rounded-xl border border-slate-200 space-y-3">
+                        <span class="text-xs font-semibold px-2.5 py-1 bg-indigo-100 text-indigo-700 rounded-md">Soal 2</span>
+                        <p class="text-sm font-semibold text-slate-900">Penyelesaian dari sistem persamaan x - y = 2 dan 3x + y = 26 adalah...</p>
+                        <div class="space-y-2 text-sm">
+                            <label class="flex items-center space-x-3 p-2.5 bg-white rounded-lg border border-slate-200 cursor-pointer hover:border-indigo-300 transition">
+                                <input type="radio" name="q2" value="a" class="accent-indigo-600">
+                                <span>(5, 3)</span>
+                            </label>
+                            <label class="flex items-center space-x-3 p-2.5 bg-white rounded-lg border border-slate-200 cursor-pointer hover:border-indigo-300 transition">
+                                <input type="radio" name="q2" value="b" class="accent-indigo-600">
+                                <span>(7, 5)</span>
+                            </label>
+                            <label class="flex items-center space-x-3 p-2.5 bg-white rounded-lg border border-slate-200 cursor-pointer hover:border-indigo-300 transition">
+                                <input type="radio" name="q2" value="c" class="accent-indigo-600">
+                                <span>(8, 2)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="button" onclick="cekHasilQuiz()" class="w-full py-3 bg-indigo-600 text-white rounded-xl font-semibold shadow hover:bg-indigo-700 transition">Periksa Jawaban</button>
+                    <div id="quizResult" class="hidden p-4 rounded-xl text-center font-bold text-sm"></div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FLOATING CHATBOT TUTOR WIDGET (SoMAT / Sobat Matematika) -->
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+        <!-- Chat Bubble Popup (Toggled) -->
+        <div id="somatChatPopup" class="hidden mb-3 w-80 bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden transition-all duration-300 transform scale-95 opacity-0">
+            <!-- Header Chat -->
+            <div class="bg-gradient-to-r from-indigo-600 to-violet-600 text-white p-3.5 flex items-center justify-between">
+                <div class="flex items-center space-x-2.5">
+                    <div class="w-8 h-8 rounded-full bg-white text-indigo-600 flex items-center justify-center font-bold text-sm shadow">🤖</div>
+                    <div>
+                        <h4 class="font-bold text-sm">SoMAT (Sobat Matematika)</h4>
+                        <p class="text-[10px] text-indigo-200 flex items-center gap-1">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 inline-block animate-pulse"></span> Online & Siap Membantu
+                        </p>
+                    </div>
+                </div>
+                <button type="button" onclick="toggleSomatChat()" class="text-indigo-200 hover:text-white p-1 rounded-lg transition">✕</button>
+            </div>
+            <!-- Body Chat Content -->
+            <div class="p-4 bg-slate-50 space-y-3 text-xs">
+                <div class="flex items-start space-x-2">
+                    <div class="w-6 h-6 rounded-full bg-indigo-100 text-indigo-700 flex-shrink-0 flex items-center justify-center font-bold">AI</div>
+                    <div class="bg-white p-3 rounded-2xl rounded-tl-sm shadow-sm border border-slate-200 text-slate-700 leading-relaxed">
+                        Halo! Saya <strong>SoMAT</strong>, AI Tutor pribadi Anda untuk SPLDV Kelas IX. Ada rumus atau soal yang ingin didiskusikan?
+                    </div>
+                </div>
+            </div>
+            <!-- Footer Action -->
+            <div class="p-3 bg-white border-t border-slate-100">
+                <a href="https://gemini.google.com/gem/1djocEZi5Z5V0-UC_IFqEuI_3ZehHOzOc?usp=sharing" target="_blank" class="w-full py-2.5 bg-indigo-600 text-white rounded-xl font-semibold text-xs flex items-center justify-center space-x-2 hover:bg-indigo-700 shadow transition">
+                    <span>Mulai Diskusi dengan SoMAT</span>
+                    <span>&rarr;</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Floating Button Trigger -->
+        <button type="button" onclick="toggleSomatChat()" class="group flex items-center space-x-2 bg-indigo-600 text-white px-4 py-3 rounded-full shadow-xl hover:bg-indigo-700 transition animate-pulse-slow border-2 border-white">
+            <span class="text-xl">🤖</span>
+            <div class="text-left">
+                <div class="text-xs font-bold leading-tight">Tanya SoMAT</div>
+                <div class="text-[9px] text-indigo-200">Sobat Matematika</div>
+            </div>
+        </button>
+    </div>
+
+    <script>
+        function switchTab(targetId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            const targetEl = document.getElementById(targetId);
+            if (targetEl) {
+                targetEl.classList.add('active');
+            }
+            
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                if(btn.getAttribute('data-target') === targetId) {
+                    btn.classList.add('bg-indigo-900');
+                    btn.classList.remove('bg-indigo-700');
+                } else {
+                    btn.classList.remove('bg-indigo-900');
+                    btn.classList.add('bg-indigo-700');
+                }
+            });
+
+            if(targetId === 'grafik') {
+                setTimeout(drawGraph, 50);
+            }
+        }
+
+        function toggleSomatChat() {
+            const popup = document.getElementById('somatChatPopup');
+            if(!popup) return;
+            if(popup.classList.contains('hidden')) {
+                popup.classList.remove('hidden');
+                setTimeout(() => {
+                    popup.classList.remove('scale-95', 'opacity-0');
+                    popup.classList.add('scale-100', 'opacity-100');
+                }, 10);
+            } else {
+                popup.classList.remove('scale-100', 'opacity-100');
+                popup.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => {
+                    popup.classList.add('hidden');
+                }, 200);
+            }
+        }
+
+        function drawGraph() {
+            const canvas = document.getElementById('canvasGrafik');
+            if(!canvas) return;
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            const a1 = parseFloat(document.getElementById('a1').value) || 0;
+            const b1 = parseFloat(document.getElementById('b1').value) || 0;
+            const c1 = parseFloat(document.getElementById('c1').value) || 0;
+
+            const a2 = parseFloat(document.getElementById('a2').value) || 0;
+            const b2 = parseFloat(document.getElementById('b2').value) || 0;
+            const c2 = parseFloat(document.getElementById('c2').value) || 0;
+
+            let sign1 = b1 >= 0 ? "+ " + b1 : "- " + Math.abs(b1);
+            let sign2 = b2 >= 0 ? "+ " + b2 : "- " + Math.abs(b2);
+            const infoEq = document.getElementById('infoPersamaan');
+            if(infoEq) {
+                infoEq.innerHTML = `Garis 1: ${a1}x ${sign1}y = ${c1}<br>Garis 2: ${a2}x ${sign2}y = ${c2}`;
+            }
+
+            ctx.fillStyle = '#020617';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.strokeStyle = '#1e293b';
+            ctx.lineWidth = 1;
+
+            const originX = 150;
+            const originY = 250;
+            const scale = 25;
+
+            for (let x = originX; x < canvas.width; x += scale) {
+                ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
+            }
+            for (let x = originX; x > 0; x -= scale) {
+                ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
+            }
+            for (let y = originY; y < canvas.height; y += scale) {
+                ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
+            }
+            for (let y = originY; y > 0; y -= scale) {
+                ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
+            }
+
+            ctx.strokeStyle = '#64748b';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(0, originY); ctx.lineTo(canvas.width, originY);
+            ctx.moveTo(originX, 0); ctx.lineTo(originX, canvas.height);
+            ctx.stroke();
+
+            // Plot Line 1
+            ctx.strokeStyle = '#38bdf8';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            let line1Drawn = false;
+            for(let px = 0; px <= canvas.width; px += 5) {
+                let x = (px - originX) / scale;
+                let y;
+                if (b1 !== 0) {
+                    y = (c1 - a1 * x) / b1;
+                    let py = originY - (y * scale);
+                    if(!line1Drawn) { ctx.moveTo(px, py); line1Drawn = true; } else { ctx.lineTo(px, py); }
+                }
+            }
+            ctx.stroke();
+
+            // Plot Line 2
+            ctx.strokeStyle = '#f43f5e';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            let line2Drawn = false;
+            for(let px = 0; px <= canvas.width; px += 5) {
+                let x = (px - originX) / scale;
+                let y;
+                if (b2 !== 0) {
+                    y = (c2 - a2 * x) / b2;
+                    let py = originY - (y * scale);
+                    if(!line2Drawn) { ctx.moveTo(px, py); line2Drawn = true; } else { ctx.lineTo(px, py); }
+                }
+            }
+            ctx.stroke();
+
+            let det = (a1 * b2) - (a2 * b1);
+            let solBox = document.getElementById('titikPenyelesaian');
+            let statusBox = document.getElementById('infoStatusPenyelesaian');
+
+            if (det !== 0) {
+                let xSol = ((c1 * b2) - (c2 * b1)) / det;
+                let ySol = ((a1 * c2) - (a2 * c1)) / det;
+                if(solBox) solBox.innerText = `(${Number(xSol.toFixed(2))}, ${Number(ySol.toFixed(2))})`;
+                if(statusBox) statusBox.innerText = "Kedua garis berpotongan tepat di satu titik.";
+
+                let intX = originX + (xSol * scale);
+                let intY = originY - (ySol * scale);
+                if(intX >= 0 && intX <= canvas.width && intY >= 0 && intY <= canvas.height) {
+                    ctx.fillStyle = '#10b981';
+                    ctx.beginPath();
+                    ctx.arc(intX, intY, 6, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            } else {
+                if(solBox) solBox.innerText = "Tidak Ada / Tak Hingga";
+                if(statusBox) statusBox.innerText = "Garis sejajar atau berimpit (tidak ada titik potong unik).";
+            }
+        }
+
+        function hitungSubstitusi() {
+            const a1 = parseFloat(document.getElementById('sub_a1').value) || 0;
+            const b1 = parseFloat(document.getElementById('sub_b1').value) || 0;
+            const c1 = parseFloat(document.getElementById('sub_c1').value) || 0;
+            const a2 = parseFloat(document.getElementById('sub_a2').value) || 0;
+            const b2 = parseFloat(document.getElementById('sub_b2').value) || 0;
+            const c2 = parseFloat(document.getElementById('sub_c2').value) || 0;
+
+            const box = document.getElementById('substitusiLangkah');
+            if(!box) return;
+
+            let det = (a1 * b2) - (a2 * b1);
+            if(det === 0) {
+                box.innerHTML = `<span class="text-rose-600 font-bold">Determinan 0 (Tidak ada penyelesaian unik).</span>`;
+                return;
+            }
+
+            let x = ((c1 * b2) - (c2 * b1)) / det;
+            let y = ((a1 * c2) - (a2 * c1)) / det;
+
+            box.innerHTML = `
+                <div><strong>1. Persamaan awal:</strong></div>
+                <div>• ${a1}x + ${b1}y = ${c1}</div>
+                <div>• ${a2}x + ${b2}y = ${c2}</div>
+                <div class="mt-2"><strong>2. Nyatakan x dari Pers 1:</strong></div>
+                <div>• x = (${c1} - ${b1}y) / ${a1}</div>
+                <div class="mt-2"><strong>3. Substitusi ke Pers 2 & Hitung:</strong></div>
+                <div>• Nilai x = ${Number(x.toFixed(2))}</div>
+                <div>• Nilai y = ${Number(y.toFixed(2))}</div>
+                <div class="mt-2 text-emerald-700 font-bold">Himpunan Penyelesaian: (${Number(x.toFixed(2))}, ${Number(y.toFixed(2))})</div>
+            `;
+        }
+
+        function hitungEliminasi() {
+            const a1 = parseFloat(document.getElementById('elim_a1').value) || 0;
+            const b1 = parseFloat(document.getElementById('elim_b1').value) || 0;
+            const c1 = parseFloat(document.getElementById('elim_c1').value) || 0;
+            const a2 = parseFloat(document.getElementById('elim_a2').value) || 0;
+            const b2 = parseFloat(document.getElementById('elim_b2').value) || 0;
+            const c2 = parseFloat(document.getElementById('elim_c2').value) || 0;
+
+            const box = document.getElementById('eliminasiLangkah');
+            if(!box) return;
+
+            let det = (a1 * b2) - (a2 * b1);
+            if(det === 0) {
+                box.innerHTML = `<span class="text-rose-600 font-bold">Determinan 0 (Tidak ada penyelesaian unik).</span>`;
+                return;
+            }
+
+            let x = ((c1 * b2) - (c2 * b1)) / det;
+            let y = ((a1 * c2) - (a2 * c1)) / det;
+
+            box.innerHTML = `
+                <div><strong>1. Persamaan awal:</strong></div>
+                <div>• ${a1}x + ${b1}y = ${c1} (kalikan ${a2})</div>
+                <div>• ${a2}x + ${b2}y = ${c2} (kalikan ${a1})</div>
+                <div class="mt-2"><strong>2. Eliminasi Variabel x:</strong></div>
+                <div>• Hasil x = ${Number(x.toFixed(2))}</div>
+                <div class="mt-2"><strong>3. Eliminasi Variabel y:</strong></div>
+                <div>• Hasil y = ${Number(y.toFixed(2))}</div>
+                <div class="mt-2 text-amber-700 font-bold">Himpunan Penyelesaian: (${Number(x.toFixed(2))}, ${Number(y.toFixed(2))})</div>
+            `;
+        }
+
+        function hitungCampuran() {
+            const a1 = parseFloat(document.getElementById('mix_a1').value) || 0;
+            const b1 = parseFloat(document.getElementById('mix_b1').value) || 0;
+            const c1 = parseFloat(document.getElementById('mix_c1').value) || 0;
+            const a2 = parseFloat(document.getElementById('mix_a2_val').value) || 0;
+            const b2 = parseFloat(document.getElementById('mix_b2').value) || 0;
+            const c2 = parseFloat(document.getElementById('mix_c2').value) || 0;
+
+            const box = document.getElementById('campuranLangkah');
+            if(!box) return;
+
+            let det = (a1 * b2) - (a2 * b1);
+            if(det === 0) {
+                box.innerHTML = `<span class="text-rose-600 font-bold">Determinan 0 (Tidak ada penyelesaian unik).</span>`;
+                return;
+            }
+
+            let x = ((c1 * b2) - (c2 * b1)) / det;
+            let y = ((a1 * c2) - (a2 * c1)) / det;
+
+            box.innerHTML = `
+                <div><strong>1. Tahap Eliminasi (Mencari x):</strong></div>
+                <div>• Eliminasi y dari sistem persamaan menghasilkan x = ${Number(x.toFixed(2))}</div>
+                <div class="mt-2"><strong>2. Tahap Substitusi (Mencari y):</strong></div>
+                <div>• Masukkan x = ${Number(x.toFixed(2))} ke salah satu persamaan awal.</div>
+                <div>• Diperoleh nilai y = ${Number(y.toFixed(2))}</div>
+                <div class="mt-2 text-purple-700 font-bold">Himpunan Penyelesaian: (${Number(x.toFixed(2))}, ${Number(y.toFixed(2))})</div>
+            `;
+        }
+
+        function cekHasilQuiz() {
+            const q1 = document.querySelector('input[name="q1"]:checked');
+            const q2 = document.querySelector('input[name="q2"]:checked');
+            const resBox = document.getElementById('quizResult');
+            if(!resBox) return;
+            
+            resBox.classList.remove('hidden');
+
+            if(!q1 || !q2) {
+                resBox.className = "p-4 rounded-xl text-center font-bold text-sm bg-amber-50 text-amber-700 border border-amber-200";
+                resBox.innerText = "Harap jawab semua soal terlebih dahulu!";
+                return;
+            }
+
+            let skor = 0;
+            if(q1.value === 'b') skor++;
+            if(q2.value === 'b') skor++;
+
+            if(skor === 2) {
+                resBox.className = "p-4 rounded-xl text-center font-bold text-sm bg-emerald-50 text-emerald-700 border border-emerald-200";
+                resBox.innerText = "Luar biasa! Jawaban Anda benar semua (Skor: 100)";
+            } else {
+                resBox.className = "p-4 rounded-xl text-center font-bold text-sm bg-rose-50 text-rose-700 border border-rose-200";
+                resBox.innerText = `Jawaban benar ${skor} dari 2 soal. Pelajari kembali materi Bab I ya!`;
+            }
+        }
+
+        window.onload = function() {
+            drawGraph();
+            hitungSubstitusi();
+            hitungEliminasi();
+            hitungCampuran();
+        };
+    </script>
+</body>
+</html>
